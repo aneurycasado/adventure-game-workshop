@@ -1,0 +1,32 @@
+{ nodes:
+   { direction:
+      { title: 'direction',
+        text: 'Welcome. Do you choose to go left, or right?',
+        connections: [Object],
+        routes: [Object] },
+     leftResp:
+      { title: 'leftResp',
+        text: 'Ah, good choice. Good choice. Now what color is the best?',
+        connections: [Object],
+        routes: [Object] },
+     rightResp:
+      { title: 'rightResp',
+        text: 'There be dragons there.',
+        connections: [],
+        routes: {} },
+     yep:
+      { title: 'yep',
+        text: 'that is true',
+        connections: [],
+        routes: {} },
+     wrong:
+      { title: 'wrong',
+        text: 'you would be incorrect, friend',
+        connections: [],
+        routes: {} } },
+  startingPoint:
+   { title: 'direction',
+     text: 'Welcome. Do you choose to go left, or right?',
+     connections: [ [Object], [Object] ],
+     routes: { undefined: [Object] } },
+  numberOfNodes: 5 }
