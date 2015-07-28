@@ -1,17 +1,19 @@
 var inquirer = require('inquirer');
 
 var game = require('./game.source');
-
+console.log(game.nodes.leftResp.getConnectionStrings());
 
 var nodes = game.nodes
 
-var questions = [
+var startingQuestion = [
 	{
 		type: "list",
 		name: game.startingPoint.title,
 		message: game.startingPoint.text,
 		choices: game.startingPoint.getConnectionStrings()
-	},
+	}
+]
+var secondQuestion = [
 	{
 		type: "list",
 		name: game.nodes.leftResp.title,
@@ -20,18 +22,24 @@ var questions = [
 	}
 ]
 
-inquirer.prompt(questions, function(answers)	 {
-	if(answers.direction == "rightResp"){
-		console.log("Your dead");
-		return;
-	}else if(answers.direction == "leftResp"){
-		if(answers.leftResp == "blue"){
-			console.log("1");
-		}else if(answers.leftResp == "green"){
-			console.log("2");
-		}else if(answers.leftResp == "red"){
-			console.log("3");
-		}
+inquirer.prompt(startingQuestion, function(answers)	 {
+  //console.log(answers);
+  if(answers['direction'] == "right"){
+    console.log(game.nodes.rightResp.text);
+	}else if(answers['direction'] == "left"){
+    var askColorAgain = function() {
+      inquirer.prompt(secondQuestion,function(answer){
+        if(answer['leftResp'] == 'blue') {
+          secondQuestion[0].message = "That is true."
+          console.log("That is true.");
+        }
+        else {
+          secondQuestion[0].message = "That is incorrect.";
+          askColorAgain();
+        }
+      });
+    }
+    askColorAgain();
 	}
 });
 
