@@ -5,15 +5,6 @@ var game = require('./game.source');
 
 var nodes = game.nodes
 
-function getChoices(connections){
-	var array = [];
-	for(var i = 0; i < connections.length; i++){
-		var name = connections[i].title;
-		array.push(name);
-	}
-	return array;
-}
-
 var questions = [
 	{
 		type: "list",
