@@ -24,13 +24,13 @@ Game.prototype.getNode = function(title,text){
   return this.nodes[title];
 }
 
-Game.prototype.connect = function(node1T,node2T){
+Game.prototype.connect = function(node1T,node2T,condition){
   var node1 = this.nodes[node1T];
   var node2 = this.nodes[node2T];
   if(node1 == undefined || node2 == undefined){
     throw new Error();
   }
-  node1.connect(node2);
+  node1.connect(node2,condition);
 }
 
 

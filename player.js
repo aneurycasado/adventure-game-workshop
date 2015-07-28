@@ -2,7 +2,6 @@ var inquirer = require('inquirer');
 
 var game = require('./game.source');
 
-console.log(getChoices(game.startingPoint.connections));
 
 var nodes = game.nodes
 
@@ -20,16 +19,15 @@ var questions = [
 		type: "list",
 		name: game.startingPoint.title,
 		message: game.startingPoint.text,
-		choices: getChoices(game.startingPoint.connections)
+		choices: game.startingPoint.getConnectionStrings()
 	},
 	{
-		type: "list", 
+		type: "list",
 		name: game.nodes.leftResp.title,
 		message: game.nodes.leftResp.text,
-		choices: getChoices(game.nodes.leftResp.connections)
+		choices: game.nodes.leftResp.getConnectionStrings()
 	}
 ]
-
 
 inquirer.prompt(questions, function(answers)	 {
 	if(answers.direction == "rightResp"){
@@ -48,8 +46,8 @@ inquirer.prompt(questions, function(answers)	 {
 
 /*
 
-This file has no test specs. It might be a tricky one. You need to look at 
-the docs for the inquirer npm package, and see if you can figure out how 
+This file has no test specs. It might be a tricky one. You need to look at
+the docs for the inquirer npm package, and see if you can figure out how
 to make the game run!
 
 If you're running out of time, check out our solution to the problem:
